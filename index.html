@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>SV TDT ESPAÑA</title>
+
+<style>
+:root{
+  --bg:#ffffff;
+  --card:#f5f5f5;
+  --muted:#555;
+  --highlight:#e60000;
+  --font-size:16px;
+}
+
+body{
+  font-family:Inter,system-ui;
+  background:#ffffff;
+  color:#111;
+  margin:0;
+  padding:16px;
+  font-size: var(--font-size);
+  overflow-x:hidden;
+}
+
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+h1{
+  font-size:20px;
+  margin:0;
+  color:var(--highlight);
+  font-weight:900;
+}
+
+input[type=search], select{
+  padding:12px 16px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  background:#fff;
+  color:#000;
+  font-weight:bold;
+  font-size:16px;
+}
+
+h2{
+  margin-top:24px;
+  color:var(--highlight);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:12px;
+  scroll-behavior:smooth;
+  overflow-x:auto;
+}
+
+.card{
+  cursor:pointer;
+  border-radius:8px;
+  overflow:hidden;
+  outline:none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background:var(--card);
+  padding:8px;
+}
+
+.card:hover, .card:focus{
+  transform: scale(1.05);
+  box-shadow:0 8px 20px rgba(230,0,0,0.4);
+}
+
+.img{
+  width:100%;
+  max-height:120px;
+  object-fit:contain;
+  border-radius:8px;
+  background:#fff;
+  display:block;
+  margin-bottom:8px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover img{
+  transform: scale(1.08);
+}
+
+.title{
+  font-weight:700;
+  font-size:14px;
+  margin-top:4px;
+  text-align:center;
+}
+
+.meta{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:2px;
+  text-align:center;
+}
+
+.pagination{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin-top:12px;
+}
+
+.pagination button{
+  padding:10px 14px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  background:transparent;
+  color:#000;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.pagination button.active{
+  background:var(--highlight);
+  color:#fff;
+}
+
+.pagination button:hover, .pagination button:focus{
+  background:var(--highlight);
+  color:#fff;
+  outline:none;
+}
+
+.grid::-webkit-scrollbar{
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <img src="https://i.ibb.co/7dGjZb80/6.jpg" style="height:42px;width:42px;border-radius:50%;object-fit:cover;">
+    <h1>SV TDT ESPAÑA (Web)</h1>
+  </div>
+  <div class="controls" style="display:flex;gap:8px;flex-wrap:wrap;">
+
+
+
+    </select>
+  </div>
+</header>
+
+<main>
+  <h2>CANALES</h2>
+  <div id="movies-grid" class="grid"></div>
+  <div id="movies-pagination" class="pagination"></div>
+</main>
+
+<script>
+// ===== Datos =====
+const mediaData = [
+  { id:'RTVE', title:'RTVE', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_RTVE.svg', link:'https://www.rtve.es/play/'},  
+  { id:'RTVE GUIA', title:'RTVE GUIA', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/e/ee/Logo_RTVE.svg', link:'https://www.rtve.es/play/guia-tve/'},  
+  { id:'LA1', title:'LA 1', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/b/b6/La_1_2026.svg', link:'https://www.rtve.es/play/videos/directo/canales-lineales/la-1/'},  
+  { id:'LA2', title:'LA 2', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/a/aa/La_2_2026.svg', link:'https://www.rtve.es/play/videos/directo/canales-lineales/la-2/'},  
+  { id:'24H', title:'24H', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/4/4c/24h_2026.svg', link:'https://www.rtve.es/play/videos/directo/canales-lineales/24h/'},  
+  { id:'TDP', title:'TDP', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/d/d1/TDP_2026.svg', link:'https://www.rtve.es/play/videos/directo/canales-lineales/tdp/'},  
+  { id:'CLAN', title:'CLAN', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/6/63/Clan_2026.svg', link:'https://www.rtve.es/play/videos/directo/canales-lineales/clan/'},  
+  { id:'SOMOSCINE', title:'SOMOS CINE', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/2/2b/Logo_de_RTVE.jpg', link:'https://www.rtve.es/play/videos/directo/canales-lineales/play-somoscine/'},  
+  { id:'LAPROMESA', title:'LA PROMESA', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/2/2b/Logo_de_RTVE.jpg', link:'https://www.rtve.es/play/videos/directo/canales-lineales/play-promesa/'},  
+  { id:'LAMODERNA', title:'LA MODERNA', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/2/2b/Logo_de_RTVE.jpg', link:'https://www.rtve.es/play/videos/directo/canales-lineales/play-lamoderna/'},  
+  { id:'CUENTAME', title:'CUENTAME', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/2/2b/Logo_de_RTVE.jpg', link:'https://www.rtve.es/play/videos/directo/canales-rtve/play-cuentame/'},  
+  { id:'LAREVUELTA', title:'LA REVUELTA', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/2/2b/Logo_de_RTVE.jpg', link:'https://www.rtve.es/play/videos/directo/rtve-play/play-larevuelta/'},  
+  { id:'SABERYGANAR', title:'SABER Y GANAR', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/2/2b/Logo_de_RTVE.jpg', link:'https://www.rtve.es/play/videos/directo/canales-rtve/play-saberyganar/'},  
+  { id:'COCINA', title:'COCINA', year:2026, genre:'RTVE', poster:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwwhDS3TA0NZDyWoS2DFBrXZEZlqjufjJ4Jw&s', link:'https://www.rtve.es/play/videos/directo/canales-lineales/play-cocina/'},  
+  { id:'CONCIERTOSR3', title:'CONCIERTOS R3', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/1/1b/RNE_Radio_3_2026.svg', link:'https://www.rtve.es/play/videos/directo/canales-rtve/conciertos-radio-3/'},  
+  { id:'PROCESIONES', title:'PROCESIONES', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/2/2b/Logo_de_RTVE.jpg', link:'https://www.rtve.es/play/videos/directo/canales-lineales/play-procesiones/'},  
+  { id:'LA2CAT', title:'LA 2 CAT', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/8/8d/La_2_Catalunya_2026.svg', link:'https://www.rtve.es/play/videos/directo/canales-lineales/la-2-cat/'},  
+  { id:'LA1CAN', title:'LA 1 CAN', year:2026, genre:'RTVE', poster:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIwdCUUiOfrldCLWed-Lo3SkKEHAKxsZDwdA&s', link:'https://www.rtve.es/play/videos/directo/tve-canarias/la-1-can/'},  
+  { id:'LA2CAN', title:'LA 2 CAN', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/4/43/Logo_La_2_Canarias.png', link:'https://www.rtve.es/play/videos/directo/tve-canarias/la-2-can/'},  
+  { id:'24HCAN', title:'24H CAN', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/4/4c/24h_2026.svg', link:'https://www.rtve.es/play/videos/directo/tve-canarias/24-h-can/'},  
+  { id:'ATRESPLAYER', title:'ATRESPLAYER', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/e/e0/Atresplayer_2023_Logo.svg', link:'https://www.atresplayer.com/'},  
+  { id:'ATRESPLAYERGUIA', title:'ATRESPLAYER GUIA', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/e/e0/Atresplayer_2023_Logo.svg', link:'https://www.atresplayer.com/programacion/'},  
+  { id:'ANTENA3', title:'ANTENA3', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/6/65/Antena_3_2025_%28sin_wordmark%29.svg', link:'https://www.atresplayer.com/directos/antena3/'},  
+  { id:'ATRESERIES', title:'ATRESERIES', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/1/16/Atreseries_2020_logo.svg', link:'https://www.atresplayer.com/directos/atreseries/'},  
+  { id:'NEOX', title:'NEOX', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/3/3c/Neox_2023_logo.svg', link:'https://www.atresplayer.com/directos/neox/'},  
+  { id:'NOVA', title:'NOVA', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/1/1e/Nova.svg', link:'https://www.atresplayer.com/directos/nova/'},  
+  { id:'MEGA', title:'MEGA', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/8/8c/MEGA.svg', link:'https://www.atresplayer.com/directos/mega/'},  
+  { id:'LASEXTA', title:'LA SEXTA', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/7/75/LaSexta_2024_Logo.svg', link:'https://www.atresplayer.com/directos/lasexta/'},  
+  { id:'CLASICOS', title:'CLASICOS', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/e/e0/Atresplayer_2023_Logo.svg', link:'https://www.atresplayer.com/directos/clasicos/'},  
+  { id:'MULTICINE', title:'MULTICINE', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/e/e0/Atresplayer_2023_Logo.svg', link:'https://www.atresplayer.com/directos/multicine/'},  
+  { id:'COMEDIA', title:'COMEDIA', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/e/e0/Atresplayer_2023_Logo.svg', link:'https://www.atresplayer.com/directos/comedia/'},  
+  { id:'INQUIETOS', title:'INQUIETOS', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/e/e0/Atresplayer_2023_Logo.svg', link:'https://www.atresplayer.com/directos/mentes-inquietas/'},  
+  { id:'FLOOXER', title:'FLOOXER', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/7/7c/Logo_Flooxer.png', link:'https://www.atresplayer.com/directos/canal-flooxer/'},  
+  { id:'KIDZ', title:'KIDZ', year:2026, genre:'ATRESMEDIA', poster:'data:image/jpeg;base64,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', link:'https://www.atresplayer.com/directos/canal-kidz/'},  
+  { id:'AQUINO', title:'AQUI NO HAY QUIEN VIVA', year:2026, genre:'ATRESMEDIA', poster:'https://imagenes.atresplayer.com/atp/clipping/cmsimages02/2023/06/23/9F9EF36E-8B6F-4817-8E0A-94B6B8DFBE54.png', link:'https://www.atresplayer.com/directos/aqui-no-hay-quien-viva/'},  
+  { id:'FOQ', title:'FOQ', year:2026, genre:'ATRESMEDIA', poster:'data:image/jpeg;base64,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', link:'https://www.atresplayer.com/directos/foq/'},  
+  { id:'ELHORMIGUERO', title:'EL HORMIGUERO', year:2026, genre:'ATRESMEDIA', poster:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTblQ1c579K40kYSuXiYQkwzEMOAuYp6ji-pQ&s', link:'https://www.atresplayer.com/directos/el-hormiguero/'},  
+  { id:'CLUBCOMEDIA', title:'EL CLUB DE LA COMEDIA', year:2026, genre:'ATRESMEDIA', poster:'data:image/png;base64,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', link:'https://www.atresplayer.com/directos/el-club-de-la-comedia/'},  
+  { id:'EQUIPOINVESTIGACION', title:'EQUIPO DE INVESTIGACION', year:2026, genre:'ATRESMEDIA', poster:'https://upload.wikimedia.org/wikipedia/commons/d/d9/LOGO_EQUIPO_INVESTIGACI%C3%93N.png', link:'https://www.atresplayer.com/directos/equipo-de-investigacion/'},  
+  { id:'MEDIASET', title:'MEDIASET INFINITY', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/a/a7/Mediaset_Infinity_logo_%282023%29.svg', link:'https://www.mediasetinfinity.es/'},    
+  { id:'MEDIASETEPG', title:'MEDIASET INFINITY GUIA', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/a/a7/Mediaset_Infinity_logo_%282023%29.svg', link:'https://www.mediasetinfinity.es/epg'},    
+  { id:'CUATRO', title:'CUATRO', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/c/ce/Cuatro.svg', link:'https://www.mediasetinfinity.es/directo/cuatro/'},    
+  { id:'TELECINCO', title:'TELECINCO', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/1/13/Telecinco_2024_Logo.svg', link:'https://www.mediasetinfinity.es/directo/telecinco/'},    
+  { id:'FDF', title:'FDF', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/4/42/Factor%C3%ADa_de_Ficci%C3%B3n.svg', link:'https://www.mediasetinfinity.es/directo/fdf/'},    
+  { id:'DIVINITY', title:'DIVINITY', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/0/06/Divinity_2012.png', link:'https://www.mediasetinfinity.es/directo/divinity/'},    
+  { id:'ENERGY', title:'ENERGY', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/9/93/Energy_2012.png', link:'https://www.mediasetinfinity.es/directo/energy/'},    
+  { id:'BMAD', title:'BMAD', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/7/7d/BeMad_2022_Logo.svg', link:'https://www.mediasetinfinity.es/directo/bemad/'},    
+  { id:'BOING', title:'BOING', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/9/95/Boing_2020.svg', link:'https://www.mediasetinfinity.es/directo/boing/'},    
+  { id:'MITELECOMEDIA', title:'INFINITY COMEDIA', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/a/a7/Mediaset_Infinity_logo_%282023%29.svg', link:'https://www.mediasetinfinity.es/directo/mitele-comedia/'},    
+  { id:'MITELEENLACALLE', title:'INFINITY EN LA CALLE', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/a/a7/Mediaset_Infinity_logo_%282023%29.svg', link:'https://www.mediasetinfinity.es/directo/mitele-en-la-calle/'},    
+  { id:'MITELEVIAJES', title:'INFINITY VIAJES', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/a/a7/Mediaset_Infinity_logo_%282023%29.svg', link:'https://www.mediasetinfinity.es/directo/mitele-viajes/'},    
+  { id:'MITELETOPSERIES', title:'INFINITY TOP SERIES', year:2026, genre:'MEDIASET', poster:'https://upload.wikimedia.org/wikipedia/commons/a/a7/Mediaset_Infinity_logo_%282023%29.svg', link:'https://www.mediasetinfinity.es/directo/mitele-top-series/'},    
+  { id:'MTMAD24', title:'MTMAD 24H', year:2026, genre:'MEDIASET', poster:'https://album.mediaset.es/eimg/2017/11/03/NZSCufOaaYWMHg2Z9soic6.jpg?w=1200&h=900', link:'https://www.mediasetinfinity.es/directo/mtmad-24h/'},    
+  { id:'MTMAD', title:'MTMAD', year:2026, genre:'MEDIASET', poster:'https://album.mediaset.es/eimg/2017/11/03/NZSCufOaaYWMHg2Z9soic6.jpg?w=1200&h=900', link:'https://www.mtmad.es/endirecto/'},    
+  { id:'DMAX', title:'DMAX', year:2026, genre:'OTROS', poster:'https://upload.wikimedia.org/wikipedia/commons/7/7e/DMAX_Spain_2023_Logo.svg', link:'https://dmax.marca.com/'},          
+];
+
+let filteredData = mediaData;
+
+const moviesEl = document.getElementById('movies-grid');
+
+function renderMovies(data){
+  moviesEl.innerHTML='';
+  data.forEach(item=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`
+      <img loading="lazy" class="img" src="${item.poster}">
+      <div class="title">${item.title}</div>
+      <div class="meta">${item.year} • ${item.genre}</div>
+    `;
+    div.onclick=()=>window.open(item.link,'_blank','noopener,noreferrer');
+    moviesEl.appendChild(div);
+  });
+}
+
+renderMovies(mediaData);
+</script>
+
+</body>
+</html>
+
