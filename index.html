@@ -145,9 +145,33 @@ h2{
 </section>  
   
 <!-- ===== CANALES LOCALES ===== -->
+<section id="local-channels1">
+  <h2>CANALES AUTONÓMICOS ASTURIAS</h2>
+  <div id="local-grid1" class="grid"></div>
+</section>  
+
+<!-- ===== CANALES LOCALES ===== -->
 <section id="local-channels2">
   <h2>CANALES AUTONÓMICOS CANARIAS</h2>
   <div id="local-grid2" class="grid"></div>
+</section>  
+  
+<!-- ===== CANALES LOCALES ===== -->
+<section id="local-channels20">
+  <h2>CANALES AUTONÓMICOS CANTABRIA</h2>
+  <div id="local-grid20" class="grid"></div>
+</section>  
+  
+<!-- ===== CANALES LOCALES ===== -->
+<section id="local-channels21">
+  <h2>CANALES AUTONÓMICOS CASTILLA LA MANCHA</h2>
+  <div id="local-grid21" class="grid"></div>
+</section>  
+ 
+<!-- ===== CANALES LOCALES ===== -->
+<section id="local-channels22">
+  <h2>CANALES AUTONÓMICOS CASTILLA LEON</h2>
+  <div id="local-grid22" class="grid"></div>
 </section>  
   
 <!-- ===== CANALES LOCALES ===== -->
@@ -168,10 +192,28 @@ h2{
   <div id="local-grid32" class="grid"></div>
 </section> 
  
+ <!-- ===== CANALES LOCALES ===== -->
+<section id="local-channels321">
+  <h2>CANALES AUTONÓMICOS EXTREMADURA</h2>
+  <div id="local-grid321" class="grid"></div>
+</section> 
+ 
+ <!-- ===== CANALES LOCALES ===== -->
+<section id="local-channels3211">
+  <h2>CANALES AUTONÓMICOS ISLAS BALEARES</h2>
+  <div id="local-grid3211" class="grid"></div>
+</section> 
+ 
 <!-- ===== CANALES LOCALES ===== -->
 <section id="local-channels4">
   <h2>CANALES AUTONÓMICOS MADRID</h2>
   <div id="local-grid4" class="grid"></div>
+</section>  
+  
+<!-- ===== CANALES LOCALES ===== -->
+<section id="local-channels41">
+  <h2>CANALES AUTONÓMICOS MURCIA</h2>
+  <div id="local-grid41" class="grid"></div>
 </section>  
   
 <!-- ===== CANALES LOCALES ===== -->
@@ -255,10 +297,53 @@ const localChannels = [
 
 ];
 
+const localChannels1 = [
+  { id:'RTPAW', title:'RTPA (WEB)', poster:'https://upload.wikimedia.org/wikipedia/commons/4/49/RTPA_2023_Logo.svg', link:'https://www.rtpa.es/'},
+  { id:'RTPAGUIA', title:'RTPA (GUIA)', poster:'https://upload.wikimedia.org/wikipedia/commons/4/49/RTPA_2023_Logo.svg', link:'https://www.rtpa.es/tpa-programacion'},
+  { id:'RTPA', title:'RTPA', poster:'https://upload.wikimedia.org/wikipedia/commons/4/49/RTPA_2023_Logo.svg', link:'https://www.rtpa.es/tpa-television'},
+
+];
+
 const localChannels2 = [
   { id:'LA1CAN', title:'LA 1 CAN', year:2026, genre:'RTVE', poster:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIwdCUUiOfrldCLWed-Lo3SkKEHAKxsZDwdA&s', link:'https://www.rtve.es/play/videos/directo/tve-canarias/la-1-can/'},  
   { id:'LA2CAN', title:'LA 2 CAN', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/4/43/Logo_La_2_Canarias.png', link:'https://www.rtve.es/play/videos/directo/tve-canarias/la-2-can/'},  
   { id:'24HCAN', title:'24H CAN', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/4/4c/24h_2026.svg', link:'https://www.rtve.es/play/videos/directo/tve-canarias/24-h-can/'},  
+  { id:'RTVCW', title:'RTVC (WEB)', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/0/01/Logo_de_Televisi%C3%B3n_Canaria.svg', link:'https://rtvc.es/'},  
+  { id:'RTVC', title:'RTVC', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/0/01/Logo_de_Televisi%C3%B3n_Canaria.svg', link:'https://rtvc.es/en-directo/'},  
+
+];
+
+const localChannels20 = [
+  { id:'POPULARTVCANW', title:'POPULAR TV CANTABRIA (WEB)', year:2026, genre:'RTVE', poster:'https://populartvcantabria.com/wp-content/uploads/2022/10/cropped-logo-popular-horizontal-768x320.png', link:'https://populartvcantabria.com/'},  
+  { id:'POPULARTVCANGUIA', title:'POPULAR TV CANTABRIA (GUIA)', year:2026, genre:'RTVE', poster:'https://populartvcantabria.com/wp-content/uploads/2022/10/cropped-logo-popular-horizontal-768x320.png', link:'https://populartvcantabria.com/guia-tv/'},  
+  { id:'POPULARTVCAN', title:'POPULAR TV CANTABRIA', year:2026, genre:'RTVE', poster:'https://populartvcantabria.com/wp-content/uploads/2022/10/cropped-logo-popular-horizontal-768x320.png', link:'https://populartvcantabria.com/en-directo/'},  
+
+
+];
+
+const localChannels21 = [
+  { id:'CMMW', title:'CMM (WEB)', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/8/8a/CMMedia.svg', link:'https://www.cmmedia.es/play'},  
+  { id:'CMM', title:'CMM', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/8/8a/CMMedia.svg', link:'https://www.cmmedia.es/play/en-directo/tv'},  
+
+
+];
+
+const localChannels22 = [
+  { id:'CYLTVW', title:'CYLTV (WEB)', year:2026, genre:'RTVE', poster:'https://www.cyltv.es/img/cylTV.es.svg', link:'https://www.cyltv.es/'},  
+  { id:'LCYLTVPLAYW', title:'CYLTV PLAY (WEB)', year:2026, genre:'RTVE', poster:'https://www.cyltvplay.es/img/LogoOTT-260x85.png', link:'https://www.cyltvplay.es/'},  
+  { id:'LA7', title:'LA 7', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/f/f3/Logo_La_7.svg', link:'https://www.cyltvplay.es/player/d3badef6-d229-4a27-9609-03df3d17ca3/la7/la7'},  
+  { id:'LA8AV', title:'LA 8 AVILA', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/c/c7/Logo_La_8.svg', link:'https://www.cyltvplay.es/player/8ff2818d-60f4-43dd-a76f-7e43644e51d/la8av/la-8-avila'},  
+  { id:'LA8BI', title:'LA 8 BIERZO', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/c/c7/Logo_La_8.svg', link:'https://www.cyltvplay.es/player/f10db0a9-9d70-4c22-a331-54f18e37a50/la8bi/la-8-bierzo'},  
+  { id:'LA8BU', title:'LA 8 BURGOS', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/c/c7/Logo_La_8.svg', link:'https://www.cyltvplay.es/player/f6b3c206-798e-4ef9-aad7-beb4c0369b0/la8bu/la-8-burgos'},  
+  { id:'LA8LE', title:'LA 8 LEON', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/c/c7/Logo_La_8.svg', link:'https://www.cyltvplay.es/player/9981645e-51e3-4959-90ac-8e73efcfd15/la8le/la-8-leon'},  
+  { id:'LA8PA', title:'LA 8 PALENCIA', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/c/c7/Logo_La_8.svg', link:'https://www.cyltvplay.es/player/873e0dae-6224-4e3a-8c60-acf7b56e2cc/la8pa/la-8-palencia'},  
+  { id:'LA8SA', title:'LA 8 SALAMANCA', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/c/c7/Logo_La_8.svg', link:'https://www.cyltvplay.es/player/4b93450f-34f7-4301-9dc1-d43b076f117/la8sa/la-8-salamanca'},  
+  { id:'LA8SE', title:'LA 8 SEGOVIA', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/c/c7/Logo_La_8.svg', link:'https://www.cyltvplay.es/player/cd2029ac-aea3-4f48-accf-14caed70a33/la8se/la-8-segovia'},  
+  { id:'LA8SO', title:'LA 8 SORIA', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/c/c7/Logo_La_8.svg', link:'https://www.cyltvplay.es/player/2d1f3fe6-dd82-4c1f-93f0-fa8d8e7e221/la8so/la-8-soria'},  
+  { id:'LA8V', title:'LA 8 VALLADOLID', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/c/c7/Logo_La_8.svg', link:'https://www.cyltvplay.es/player/6e84baf4-1546-4572-9df7-347120782b4/la8va/la-8-valladolid'},  
+  { id:'LA8Z', title:'LA 8 ZAMORA', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/c/c7/Logo_La_8.svg', link:'https://www.cyltvplay.es/player/e176f0c7-3c25-4892-98be-98fea180e8e/la8za/la-8-zamora'},  
+
+
 ];
 
 const localChannels3 = [
@@ -305,11 +390,34 @@ const localChannels32 = [
  
 ];
 
+const localChannels321 = [
+  { id:'CEXTREMAW', title:'CANAL EXTREMADURA (WEB)', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/7/7c/CEXMA_new.png', link:'https://www.canalextremadura.es/en'},  
+  { id:'CEXTREMA', title:'CANAL EXTREMADURA', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/7/7c/CEXMA_new.png', link:'https://www.canalextremadura.app/videos/182630-television-en-directo'},  
+
+ 
+];
+
+const localChannels3211 = [
+  { id:'IB3W', title:'IB3 (WEB)', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/5/5a/IB3.svg', link:'https://ib3.org/'},  
+  { id:'IB3', title:'IB3', year:2026, genre:'RTVE', poster:'https://upload.wikimedia.org/wikipedia/commons/5/5a/IB3.svg', link:'https://ib3.org/directe'},  
+
+ 
+];
+
 const localChannels4 = [
   { id:'TELEMADRIDW', title:'TELEMADRID (WEB)', poster:'https://upload.wikimedia.org/wikipedia/commons/7/71/TeleMadrid.svg', link:'https://www.telemadrid.es/'},
   { id:'TELEMADRIDGUIA', title:'TELEMADRID (GUIA)', poster:'https://upload.wikimedia.org/wikipedia/commons/7/71/TeleMadrid.svg', link:'https://www.telemadrid.es/programacion/'},
   { id:'TELEMADRID', title:'TELEMADRID', poster:'https://upload.wikimedia.org/wikipedia/commons/7/71/TeleMadrid.svg', link:'https://www.telemadrid.es/emision-en-directo/'},
   { id:'LAOTRA', title:'LA OTRA', poster:'https://upload.wikimedia.org/wikipedia/commons/7/7a/La_Otra_logo_%282017%29.svg', link:'https://www.telemadrid.es/emision-en-directo-laotra/'},
+
+];
+
+const localChannels41 = [
+  { id:'LA7W', title:'LA 7 (WEB)', poster:'https://www.la7tv.es/media/la7tv/images/2022/08/01/2022080110314173695.png', link:'https://www.la7tv.es/'},
+  { id:'LA7GUIA', title:'LA 7 (GUIA)', poster:'https://www.la7tv.es/media/la7tv/images/2022/08/01/2022080110314173695.png', link:'https://www.la7tv.es/seccion/programacion/'},
+  { id:'LA7', title:'LA 7', poster:'https://www.la7tv.es/media/la7tv/images/2022/08/01/2022080110314173695.png', link:'https://www.la7tv.es/video/a-la-carta/7tv-en-directo/20220810150726000939.html'},
+  { id:'LA7MAS', title:'LA 7 +', poster:'https://www.la7tv.es/media/la7tv/images/2022/08/01/2022080110314173695.png', link:'https://www.la7tv.es/video/a-la-carta/la-7/20221004091316003030.html'},
+
 
 ];
 
@@ -362,11 +470,18 @@ function filterChannels(inputId, channels, gridId){
 renderChannels(nationalChannels,'movies-grid');
 renderChannels(regionalChannels,'regional-grid');
 renderChannels(localChannels, "local-grid");
+renderChannels(localChannels1, "local-grid1");
 renderChannels(localChannels2, "local-grid2");
+renderChannels(localChannels20, "local-grid20");
+renderChannels(localChannels21, "local-grid21");
+renderChannels(localChannels22, "local-grid22");
 renderChannels(localChannels3, "local-grid3");
 renderChannels(localChannels31, "local-grid31");
 renderChannels(localChannels32, "local-grid32");
+renderChannels(localChannels321, "local-grid321");
+renderChannels(localChannels3211, "local-grid3211");
 renderChannels(localChannels4, "local-grid4");
+renderChannels(localChannels41, "local-grid41");
 renderChannels(localChannels5, "local-grid5");
 filterChannels('regional-search', regionalChannels, 'regional-grid');
 </script>
